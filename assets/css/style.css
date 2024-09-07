@@ -75,7 +75,7 @@ color: #FFF;
 font-size: 35px;
 letter-spacing: 5px;
 font-weight: 900;
-background-color:rgb(93, 0, 87);
+background-color:rgba(92,16,139,255);
 padding-bottom: 60px;
 }
 
@@ -97,10 +97,10 @@ border-width: 0 0 0px;
     font-weight:900;
 }
 .navbar-inverse .navbar-nav > li > a:hover {
-    color:rgba(93, 0, 87, 1);
+    color:rgba(92,16,139,255);
 }
 .active-menu-item {
-    color:rgba(93, 0, 87, 1)!important;
+    color:rgba(92,16,139,255)!important;
 }
 .navbar-brand small {
     font-size:12px;
