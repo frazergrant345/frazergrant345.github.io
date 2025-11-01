@@ -471,3 +471,78 @@ footer .footer-below {
     display: none;
     opacity: 0;
 }
+
+  /* === Cookie Banner Styles === */
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #007f89; /* Teal/blue tone */
+    color: white;
+    padding: 15px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 1000;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  .cookie-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .cookie-content p {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .cookie-content a {
+    color: #aefcff;
+    text-decoration: underline;
+  }
+
+  .cookie-buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .cookie-buttons button {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  #accept-cookies {
+    background-color: white;
+    color: #007f89;
+  }
+
+  #accept-cookies:hover {
+    background-color: #e0ffff;
+  }
+
+  #decline-cookies {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+  }
+
+  #decline-cookies:hover {
+    background-color: rgba(255,255,255,0.15);
+  }
+
+  @media (min-width: 600px) {
+    .cookie-content {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
