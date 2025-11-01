@@ -80,15 +80,38 @@ hr.star-primary:after {
 }
 
 header {
+    position: relative;
     text-align: center;
     color: #fff;
-    background: #00dfd0;
+    width: 100%;
+    background-color: #00dfd0;
+    background-image: url("../img/swimming-pool.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden; /* make sure pseudo-element stays clipped */
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3); /* default overlay */
+    transition: background 0.4s ease; /* smooth effect */
+    z-index: 0;
+}
+
+header:hover::before {
+    background: rgba(0, 0, 0, 0.55); /* darken on hover */
 }
 
 header .container {
+    position: relative;
+    z-index: 1;
     padding-top: 100px;
     padding-bottom: 50px;
 }
+
 
 header img {
     display: block;
