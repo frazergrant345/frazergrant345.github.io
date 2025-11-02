@@ -22,18 +22,41 @@
   <script>window.addEventListener('load', () => { document.body.classList.add('loaded'); });</script>
   <script src="js/include.js" defer></script>
   <script src="js/modals.js" defer></script>
-  <script src="js/cookies.js" defer></script>
   <script src="js/scroll.js" defer></script>
+  <script src="js/cookies.js" defer></script>
   <script src="js/stardust.js" defer></script>
 </head>
 <body>
   <div data-include="includes/header.html"></div>
   <main class="container section-gap">
-    <section class="cards-grid">
-      <article class="card"><div class="card-icon">✈️</div><h3>Tailored Flights</h3><p>Flexible routes, smart fares, and hand-picked airlines to suit your style.</p></article>
-      <article class="card"><div class="card-icon">🚢</div><h3>Dream Cruises</h3><p>From Mediterranean sunsets to Caribbean sparkle — curated cruise getaways.</p></article>
-      <article class="card"><div class="card-icon">🌍</div><h3>Adventures</h3><p>City breaks, safaris, beach bliss — tell us the vibe, we’ll plan the magic.</p></article>
-    </section>
+    
+<section class="features">
+  <div class="cards-grid">
+    
+    <!-- ✈️ Tailored Flights -->
+    <div class="feature-card" data-open-modal="flights">
+      <div class="icon">✈️</div>
+      <h3>Tailored Flights</h3>
+      <p>Flexible routes, smart fares, and hand-picked airlines to suit your style.</p>
+    </div>
+
+    <!-- 🛳️ Dream Cruises -->
+    <div class="feature-card" data-open-modal="cruises">
+      <div class="icon">🛳️</div>
+      <h3>Dream Cruises</h3>
+      <p>From Mediterranean sunsets to Caribbean sparkle — curated cruise getaways.</p>
+    </div>
+
+    <!-- 🌍 Adventures -->
+    <div class="feature-card" data-open-modal="adventures">
+      <div class="icon">🌍</div>
+      <h3>Adventures</h3>
+      <p>City breaks, safaris, beach bliss — tell us the vibe, we’ll plan the magic.</p>
+    </div>
+
+  </div>
+</section>
+
     <section id="about" class="panel">
       <div class="panel-media"></div>
       <div class="panel-content">
