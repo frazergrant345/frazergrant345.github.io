@@ -227,6 +227,103 @@
   </div>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 🌠 Create stardust layer
+    const layer = document.createElement("div");
+    layer.className = "stardust-layer";
+    document.body.appendChild(layer);
+
+    // 🌠 Create toggle button
+    const toggleBtn = document.createElement("button");
+    toggleBtn.id = "stardust-toggle";
+    document.body.appendChild(toggleBtn);
+
+    // Load saved state
+    let stardustEnabled = localStorage.getItem("stardust-enabled");
+    if (stardustEnabled === null) stardustEnabled = "true";
+
+    function updateButton() {
+      if (stardustEnabled === "true") {
+        toggleBtn.textContent = "✨ Disable Magic";
+        toggleBtn.classList.remove("off");
+      } else {
+        toggleBtn.textContent = "Enable Magic ✨";
+        toggleBtn.classList.add("off");
+      }
+    }
+
+    updateButton();
+
+    toggleBtn.addEventListener("click", () => {
+      stardustEnabled = stardustEnabled === "true" ? "false" : "true";
+      localStorage.setItem("stardust-enabled", stardustEnabled);
+      updateButton();
+    });
+
+    // 🌠 Stardust effect
+    let lastX = 0, lastY = 0, lastTime = 0;
+    let fadeTimer, active = false;
+
+    document.addEventListener("mousemove", (e) => {
+      if (stardustEnabled !== "true") return;
+
+      const now = Date.now();
+      const dx = e.pageX - lastX;
+      const dy = e.pageY - lastY;
+      const dt = now - lastTime || 1;
+      const speed = Math.sqrt(dx*dx + dy*dy) / dt; // px/ms
+
+      lastX = e.pageX;
+      lastY = e.pageY;
+      lastTime = now;
+
+      const baseCount = 3;
+      const extra = Math.min(10, Math.floor(speed * 30));
+      const count = baseCount + extra;
+
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement("div");
+        star.className = "stardust";
+        layer.appendChild(star);
+
+        const tx = (Math.random() - 0.5) * 100;
+        const ty = (Math.random() - 0.5) * 100;
+        star.style.setProperty("--tx", tx);
+        star.style.setProperty("--ty", ty);
+
+        const size = Math.random() * 6 + 4;
+        const colors = [
+          "rgba(0,223,208,0.9)",   // teal
+          "rgba(0,145,255,0.9)",   // blue
+          "rgba(255,215,120,0.9)", // gold
+          "rgba(255,183,255,0.9)"  // pink
+        ];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${e.clientX}px`;
+        star.style.top = `${e.clientY}px`;
+        star.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
+        star.style.boxShadow = `0 0 ${Math.random() * 12 + 4}px ${color}`;
+
+        setTimeout(() => star.remove(), 1300);
+      }
+
+      if (!active) {
+        active = true;
+        clearTimeout(fadeTimer);
+      }
+
+      clearTimeout(fadeTimer);
+      fadeTimer = setTimeout(() => {
+        active = false;
+      }, 1500);
+    });
+  });
+</script>
+ 
     <script>
   // === Cookie Banner Script ===
   document.addEventListener("DOMContentLoaded", () => {
