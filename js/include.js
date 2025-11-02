@@ -1,14 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   const includes = document.querySelectorAll("[data-include]");
+  const loadPromises = [];
+
   includes.forEach(el => {
-    const file = `includes/${el.getAttribute("data-include")}`;
-    fetch(file).then(r => {
-      if (!r.ok) throw new Error(`Error loading ${file} (${r.status})`);
-      return r.text();
-    }).then(html => el.innerHTML = html)
-      .catch(err => {
-        console.error(err);
-        el.innerHTML = `<div style='color:#b00020'>Failed to load ${file}</div>`;
-      });
+    const file = el.getAttribute("data-include");
+    const p = fetch(file)
+      .then(response => {
+        if (!response.ok) throw new Error(`Error loading ${file}`);
+        return response.text();
+      })
+      .then(data => (el.innerHTML = data))
+      .catch(err => (el.innerHTML = `<p style="color:red;">${err}</p>`));
+    loadPromises.push(p);
+  });
+
+  Promise.all(loadPromises).then(() => {
+    document.dispatchEvent(new Event("includesLoaded"));
   });
 });
