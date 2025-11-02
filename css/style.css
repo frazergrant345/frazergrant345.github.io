@@ -181,7 +181,7 @@ body.loaded {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
-  margin-bottom: 40px; /* 👈 Add this line */
+  margin-bottom: clamp(24px, 6vw, 60px); /* 👈 responsive gap */
 }
 
 /* ---------- Info Panel ---------- */
