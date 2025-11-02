@@ -449,6 +449,14 @@ body.loaded {
   transform: scale(1.05);
 }
 
+/* Disable outer scroll for the quote modal only */
+#quote-modal .modal-body {
+  max-height: none;      /* remove height limit */
+  overflow: visible;     /* no scrollbar */
+  padding: 0 0 20px;     /* optional: less padding for cleaner iframe fit */
+}
+
+
 
 /* ---------- Stardust Effect ---------- */
 .stardust-layer {
