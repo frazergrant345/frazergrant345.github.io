@@ -29,20 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
     updateToggle();
   });
 
-  let lastX = 0, lastY = 0, lastTime = 0;
-
   function createStardust(x, y, density = 1) {
     if (enabled !== "true") return;
 
-    const now = Date.now();
-    const dx = x - lastX;
-    const dy = y - lastY;
-    const dt = now - lastTime || 1;
-    const speed = Math.sqrt(dx * dx + dy * dy) / dt;
-    lastX = x; lastY = y; lastTime = now;
-
     const base = 2;
-    const extra = Math.min(10, Math.floor(speed * 30));
+    const extra = 4;
     const count = (base + extra) * density;
 
     for (let i = 0; i < count; i++) {
@@ -64,10 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "rgba(255,183,255,0.9)"
       ];
       const color = colors[Math.floor(Math.random() * colors.length)];
+
+      // place relative to document scroll
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
       star.style.width = `${size}px`;
       star.style.height = `${size}px`;
       star.style.left = `${x}px`;
-      star.style.top = `${y}px`;
+      star.style.top = `${y + scrollY}px`;
       star.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
       star.style.boxShadow = `0 0 ${Math.random() * 12 + 4}px ${color}`;
       star.style.opacity = 0.9;
@@ -76,29 +70,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 🖱️ Desktop mouse trail
-  document.addEventListener("mousemove", (e) => createStardust(e.pageX, e.pageY));
+  // 🖱️ Desktop mouse trail (full-page)
+  document.addEventListener("mousemove", (e) => {
+    createStardust(e.clientX, e.clientY, 1);
+  });
 
-  // 📱 Touch trail (smooth interpolation)
-  let touchActive = false;
+  // 📱 Touch trail (accurate + full-page)
   let lastTouch = null;
+  let touchActive = false;
 
   document.addEventListener("touchstart", (e) => {
     touchActive = true;
     const t = e.touches[0];
-    lastTouch = { x: t.pageX, y: t.pageY };
-    for (let i = 0; i < 5; i++) {
-      setTimeout(() => createStardust(t.pageX, t.pageY, 0.6), i * 40);
-    }
+    lastTouch = { x: t.clientX, y: t.clientY };
+    createStardust(t.clientX, t.clientY, 0.8);
   }, { passive: true });
 
   document.addEventListener("touchmove", (e) => {
     if (!touchActive || !lastTouch) return;
     const t = e.touches[0];
-    const dx = t.pageX - lastTouch.x;
-    const dy = t.pageY - lastTouch.y;
+    const dx = t.clientX - lastTouch.x;
+    const dy = t.clientY - lastTouch.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    const steps = Math.ceil(dist / 10); // smaller = smoother trail
+    const steps = Math.ceil(dist / 10);
 
     for (let i = 0; i < steps; i++) {
       const progress = i / steps;
@@ -107,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       createStardust(x, y, 0.4);
     }
 
-    lastTouch = { x: t.pageX, y: t.pageY };
+    lastTouch = { x: t.clientX, y: t.clientY };
   }, { passive: true });
 
   document.addEventListener("touchend", () => {
