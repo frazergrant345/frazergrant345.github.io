@@ -86,5 +86,52 @@
 
   </main>
   <div data-include="includes/footer.html"></div>
+  <script>
+  const GA_MEASUREMENT_ID = 'G-LFZFLXJYD4';
+
+  function loadGoogleAnalytics() {
+    if (window.gtagLoaded) return;
+    window.gtagLoaded = true;
+
+    const script = document.createElement('script');
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    script.async = true;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { 'anonymize_ip': true });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const consent = localStorage.getItem('cookieConsent');
+
+    // Load GA if already accepted
+    if (consent === 'accepted') {
+      loadGoogleAnalytics();
+    }
+
+    // Hook into your existing cookie buttons
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'accepted');
+        loadGoogleAnalytics();
+      });
+    }
+
+    if (declineBtn) {
+      declineBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieConsent', 'declined');
+        console.warn('Cookies declined — Analytics disabled.');
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
