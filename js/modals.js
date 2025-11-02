@@ -11,6 +11,7 @@ document.addEventListener("includesLoaded", () => {
     flights: document.getElementById("flights-modal"),
     cruises: document.getElementById("cruises-modal"),
     adventures: document.getElementById("adventures-modal"),
+    about: document.getElementById("about-modal"),
   };
 
   // Open modal
