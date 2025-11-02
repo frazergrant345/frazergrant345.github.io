@@ -396,9 +396,10 @@ body.loaded {
 
 /* Base modal panel */
 .modal-panel {
+  position: relative; /* 👈 makes this the positioning container */
   width: min(960px, 96vw);
   max-height: 88vh;
-  display: none; /* hidden by default */
+  display: none;
   background: #fff;
   color: var(--ink);
   border-radius: var(--radius);
@@ -406,8 +407,9 @@ body.loaded {
   transform: scale(0.9);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  overflow: hidden; /* keep rounded corners */
+  overflow: hidden;
 }
+
 
 /* Only visible when opened */
 .modal-panel.open {
