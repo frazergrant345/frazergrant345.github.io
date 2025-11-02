@@ -386,19 +386,28 @@ body.loaded {
   opacity: 1;
 }
 
-.modal-panel {
+..modal-panel {
   width: min(960px, 96vw);
   max-height: 88vh;
-  overflow: hidden;
+  display: none;
   background: #fff;
   color: var(--ink);
   border-radius: var(--radius);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.25);
   transform: scale(0.9);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  display: none;
+  overflow: hidden; /* keeps corners rounded */
 }
+
+/* New: inner scroll container */
+.modal-body {
+  padding: 20px;
+  max-height: calc(88vh - 70px); /* leave room for header */
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
 
 .modal-panel.open {
   display: block;
