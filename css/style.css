@@ -366,7 +366,7 @@ body.loaded {
   }
 }
 
-/* ---------- Modals ---------- */
+/* ---------- Modals (fixed) ---------- */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -386,35 +386,29 @@ body.loaded {
   opacity: 1;
 }
 
-..modal-panel {
+/* Base modal panel */
+.modal-panel {
   width: min(960px, 96vw);
   max-height: 88vh;
-  display: none;
+  display: none; /* hidden by default */
   background: #fff;
   color: var(--ink);
   border-radius: var(--radius);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
   transform: scale(0.9);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  overflow: hidden; /* keeps corners rounded */
+  overflow: hidden; /* keep rounded corners */
 }
 
-/* New: inner scroll container */
-.modal-body {
-  padding: 20px;
-  max-height: calc(88vh - 70px); /* leave room for header */
-  overflow-y: auto;
-  scrollbar-gutter: stable;
-}
-
-
+/* Only visible when opened */
 .modal-panel.open {
   display: block;
   transform: scale(1);
   opacity: 1;
 }
 
+/* Modal header */
 .modal-header {
   position: sticky;
   top: 0;
@@ -425,10 +419,15 @@ body.loaded {
   border-top-right-radius: var(--radius);
 }
 
+/* Scrollable inner content */
 .modal-body {
   padding: 20px;
+  max-height: calc(88vh - 70px);
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
+/* Close button */
 .modal-close {
   position: fixed;
   top: 18px;
@@ -449,6 +448,7 @@ body.loaded {
 .modal-close:hover {
   transform: scale(1.05);
 }
+
 
 /* ---------- Stardust Effect ---------- */
 .stardust-layer {
