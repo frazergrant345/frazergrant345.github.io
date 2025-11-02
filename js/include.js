@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }).then(html => el.innerHTML = html)
       .catch(err => {
         console.error(err);
-        el.innerHTML = `<div style="color:#b00020">Failed to load ${file}</div>`;
+        el.innerHTML = `<div style='color:#b00020'>Failed to load ${file}</div>`;
       });
   });
 });
