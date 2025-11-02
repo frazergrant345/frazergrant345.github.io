@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createStardust(x, y, density = 1) {
     if (enabled !== "true") return;
+
     const now = Date.now();
     const dx = x - lastX;
     const dy = y - lastY;
@@ -75,41 +76,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 🖱️ Desktop mouse
-  document.addEventListener("mousemove", (e) => {
-    createStardust(e.pageX, e.pageY);
-  });
+  // 🖱️ Desktop mouse trail
+  document.addEventListener("mousemove", (e) => createStardust(e.pageX, e.pageY));
 
-  // 📱 Touch movement (smooth trail)
-  let touchTrailActive = false;
-  let touchX = 0, touchY = 0;
+  // 📱 Touch trail (smooth interpolation)
+  let touchActive = false;
+  let lastTouch = null;
 
   document.addEventListener("touchstart", (e) => {
-    touchTrailActive = true;
-    const touch = e.touches[0];
-    touchX = touch.pageX;
-    touchY = touch.pageY;
+    touchActive = true;
+    const t = e.touches[0];
+    lastTouch = { x: t.pageX, y: t.pageY };
     for (let i = 0; i < 5; i++) {
-      setTimeout(() => createStardust(touchX, touchY, 0.6), i * 40);
+      setTimeout(() => createStardust(t.pageX, t.pageY, 0.6), i * 40);
     }
   }, { passive: true });
 
   document.addEventListener("touchmove", (e) => {
-    const touch = e.touches[0];
-    touchX = touch.pageX;
-    touchY = touch.pageY;
+    if (!touchActive || !lastTouch) return;
+    const t = e.touches[0];
+    const dx = t.pageX - lastTouch.x;
+    const dy = t.pageY - lastTouch.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const steps = Math.ceil(dist / 10); // smaller = smoother trail
+
+    for (let i = 0; i < steps; i++) {
+      const progress = i / steps;
+      const x = lastTouch.x + dx * progress;
+      const y = lastTouch.y + dy * progress;
+      createStardust(x, y, 0.4);
+    }
+
+    lastTouch = { x: t.pageX, y: t.pageY };
   }, { passive: true });
 
   document.addEventListener("touchend", () => {
-    touchTrailActive = false;
-  });
-
-  // 🎨 Continuous gentle trail loop (follows finger smoothly)
-  function animateTrail() {
-    if (touchTrailActive) {
-      createStardust(touchX, touchY, 0.4);
-    }
-    requestAnimationFrame(animateTrail);
-  }
-  animateTrail();
+    touchActive = false;
+    lastTouch = null;
+  }, { passive: true });
 });
