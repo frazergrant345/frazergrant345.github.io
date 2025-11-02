@@ -182,27 +182,147 @@ body.loaded { opacity: 1; }
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
   box-shadow: var(--shadow);
+  position: relative;
 }
+
+/* Footer grid layout */
 .footer-grid {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 40px;
   padding: 28px 0;
 }
+
+/* Left column (brand + ABTA/ATOL) */
+.footer-grid > div:first-child {
+  flex: 1 1 300px;
+}
+
+/* Right column (links + socials stacked neatly) */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  flex: 1 1 300px;
+}
+
+/* Make the policy links inline */
+.footer-links nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .footer-links a {
   color: #fff;
   text-decoration: none;
-  margin-right: 14px;
+  font-weight: 500;
   opacity: 0.9;
+  transition: opacity 0.25s ease;
 }
-.footer-links a:hover { opacity: 1; text-decoration: underline; }
+
+.footer-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* --- ABTA & ATOL logos --- */
+.protection-logos {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  height: 42px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* --- Social Media Links (below footer links) --- */
+.social-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+}
+
+.social-icon:hover {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 145, 255, 0.4);
+}
+
+.social-icon i {
+  font-size: 18px;
+  color: #fff;
+  pointer-events: none;
+}
+
+/* Copyright text */
 .site-footer .copyright {
   text-align: center;
   margin: 0;
   padding: 8px 0 16px;
   opacity: 0.9;
 }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .footer-grid {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links nav {
+    justify-content: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .protection-logos {
+    justify-content: center;
+  }
+}
+
 
 /* ---------- Cookie Popup ---------- */
 #cookie-popup {
@@ -496,6 +616,7 @@ body.loaded { opacity: 1; }
 .feature-card .btn {
   margin-top: 16px; font-size: 0.95rem; padding: 10px 18px;
 }
+
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {

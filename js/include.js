@@ -30,3 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.dispatchEvent(new Event("includesLoaded"));
   });
 });
+
+// Re-scan Font Awesome icons after includes load
+document.addEventListener('includesLoaded', () => {
+  if (window.FontAwesome && window.FontAwesome.dom) {
+    window.FontAwesome.dom.i2svg();
+  }
+});
