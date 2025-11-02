@@ -66,3 +66,24 @@ window.addEventListener("load", () => {
     });
   }
 });
+
+// Fade cards into view smoothly as you scroll (matches stardust timing)
+window.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".feature-card");
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: "0px 0px -10% 0px"
+    }
+  );
+
+  cards.forEach(card => observer.observe(card));
+});
