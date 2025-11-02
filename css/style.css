@@ -86,7 +86,7 @@ body.loaded {
   box-shadow: var(--shadow);
   background:
     linear-gradient(135deg, rgba(0, 223, 208, 0.25), rgba(0, 145, 255, 0.25)),
-    url('img/swimming-pool.jpg') center/cover no-repeat;
+    url('../img/swimming-pool.jpg') center/cover no-repeat;
 }
 
 .hero-overlay {
@@ -191,7 +191,7 @@ body.loaded {
   min-height: 260px;
   background:
     linear-gradient(135deg, rgba(0, 223, 208, 0.2), rgba(0, 145, 255, 0.2)),
-    url('img/swimming-pool.jpg') center/cover no-repeat;
+    url('../img/swimming-pool.jpg') center/cover no-repeat;
 }
 
 .panel-content {
