@@ -622,6 +622,59 @@ body.loaded { opacity: 1; }
   margin-bottom: 0.5em;
 }
 
+/* ---------- THEME TOGGLE ---------- */
+#theme-toggle {
+  position: fixed;
+  bottom: 90px; /* just above stardust toggle */
+  right: 24px;
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  z-index: 950;
+}
+#theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 24px rgba(0, 145, 255, 0.4);
+}
+
+/* ---------- Light (Default) Theme ---------- */
+:root {
+  --bg: #f6fafb;
+  --surface: #ffffff;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --teal: #00dfd0;
+  --blue: #0091ff;
+  --gold: #ffd97a;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+}
+
+/* ---------- Dark Theme ---------- */
+body.dark-mode {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --ink: #e2e8f0;
+  --muted: #94a3b8;
+  --teal: #14b8a6;
+  --blue: #2563eb;
+  --gold: #fbbf24;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Optional: slightly adjust hero overlay for dark mode */
+body.dark-mode .hero-overlay {
+  background: rgba(0, 0, 0, 0.45);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .panel { grid-template-columns: 1fr; }
