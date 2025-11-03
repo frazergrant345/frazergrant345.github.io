@@ -949,10 +949,7 @@ body.dark-mode .social-icon:hover {
   box-shadow: 0 6px 16px rgba(199, 125, 255, 0.4);
 }
 
-/* Add a soft accent glow around buttons */
-body.dark-mode .btn-primary {
-  filter: drop-shadow(0 0 8px rgba(199, 125, 255, 0.4));
-}
+
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
