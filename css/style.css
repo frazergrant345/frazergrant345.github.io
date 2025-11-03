@@ -906,6 +906,59 @@ body.dark-mode .panel-content h2 {
   text-shadow: 0 1px 0 rgba(0,0,0,0.25);
 }
 
+/* --- Smooth theme transition --- */
+html, body, .site-footer, .feature-card, .panel, .modal-panel {
+  transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease, background 0.6s ease;
+}
+
+/* Animate the theme toggle itself */
+.theme-toggle {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, background 0.5s ease;
+}
+.theme-toggle:active {
+  transform: rotate(20deg) scale(0.9);
+}
+
+/* ---------- Dark Mode Gradient Palette ---------- */
+body.dark-mode {
+  --teal: #a46eff;  /* lavender-violet */
+  --blue: #c77dff;  /* light purple accent */
+  --gold: #ffbdf7;  /* optional soft pink highlight */
+}
+
+/* Apply new gradients to key components */
+body.dark-mode .btn-primary,
+body.dark-mode .cookie-buttons .accept,
+body.dark-mode #stardust-toggle,
+body.dark-mode .theme-toggle {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  box-shadow: 0 8px 24px rgba(199, 125, 255, 0.35);
+}
+
+body.dark-mode .btn-primary:hover,
+body.dark-mode .cookie-buttons .accept:hover,
+body.dark-mode #stardust-toggle:hover,
+body.dark-mode .theme-toggle:hover {
+  box-shadow: 0 12px 28px rgba(199, 125, 255, 0.45);
+}
+
+/* Footer and back-to-top use the same violet gradient */
+body.dark-mode .site-footer,
+body.dark-mode #back-to-top {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Optional: make social icons subtly glow violet */
+body.dark-mode .social-icon:hover {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  box-shadow: 0 6px 16px rgba(199, 125, 255, 0.4);
+}
+
+/* Add a soft accent glow around buttons */
+body.dark-mode .btn-primary {
+  filter: drop-shadow(0 0 8px rgba(199, 125, 255, 0.4));
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
