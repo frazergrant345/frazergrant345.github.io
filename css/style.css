@@ -675,6 +675,170 @@ body.dark-mode .hero-overlay {
   background: rgba(0, 0, 0, 0.45);
 }
 
+/* ---------- Dark Mode Adjustments ---------- */
+body.dark-mode .feature-card {
+  background: rgba(30, 41, 59, 0.9); /* deep navy glass */
+  color: var(--ink);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .feature-card:hover {
+  background: rgba(45, 55, 72, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .panel {
+  background: rgba(30, 41, 59, 0.9);
+  color: var(--ink);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+body.dark-mode .panel-media {
+  filter: brightness(0.8) contrast(1.1) saturate(0.9);
+}
+
+body.dark-mode .btn-primary {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 145, 255, 0.4);
+}
+
+body.dark-mode .feature-card {
+  background: linear-gradient(
+    145deg,
+    rgba(25, 33, 50, 0.95),
+    rgba(15, 23, 42, 0.9)
+  );
+  backdrop-filter: blur(12px);
+}
+
+/* ---------- Dark Mode: Modals ---------- */
+body.dark-mode .modal-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+body.dark-mode .modal-panel {
+  background: rgba(25, 33, 50, 0.95);
+  color: var(--ink);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .modal-header {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .modal-body {
+  color: var(--ink);
+  scrollbar-color: var(--blue) rgba(255,255,255,0.05);
+}
+
+body.dark-mode .modal-close {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0, 145, 255, 0.4);
+}
+
+/* ---------- Dark Mode: Cookie Popup ---------- */
+body.dark-mode #cookie-popup {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+body.dark-mode #cookie-popup .popup-card {
+  background: rgba(25, 33, 50, 0.95);
+  color: #e2e8f0;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode #cookie-popup .cookie-buttons .accept {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 145, 255, 0.4);
+}
+
+body.dark-mode #cookie-popup .cookie-buttons .decline {
+  background: rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+}
+
+body.dark-mode #cookie-popup .cookie-buttons .readmore {
+  color: var(--teal);
+}
+
+/* ---------- Dark Mode: Quote Form Modal ---------- */
+body.dark-mode #quote-modal .modal-body {
+  background: rgba(20, 30, 48, 0.85);
+  color: #e2e8f0;
+}
+
+body.dark-mode #quote-modal iframe {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  filter: brightness(0.9);
+}
+
+/* ---------- Dark Mode: General Modal Alignment ---------- */
+body.dark-mode .modal-panel {
+  background: rgba(25, 33, 50, 0.95);
+  backdrop-filter: blur(14px) saturate(120%);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .modal-header {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  color: #fff;
+}
+
+body.dark-mode .modal-body {
+  color: #e2e8f0;
+}
+
+body.dark-mode .modal-close {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  color: #fff;
+}
+
+/* ---------- Dark Mode: Footer ---------- */
+body.dark-mode .site-footer {
+  background: linear-gradient(135deg, #0b1725, #0e223a);
+  color: #e2e8f0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .footer-links a {
+  color: #e2e8f0;
+  opacity: 0.9;
+}
+
+body.dark-mode .footer-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+body.dark-mode .social-icon {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+body.dark-mode .social-icon:hover {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+}
+
+body.dark-mode .footer-logo {
+  filter: brightness(1);
+  opacity: 1;
+}
+
+body.dark-mode .copyright {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .panel { grid-template-columns: 1fr; }
