@@ -67,7 +67,7 @@ body.loaded { opacity: 1; }
   box-shadow: var(--shadow);
   background:
     linear-gradient(135deg, rgba(0, 223, 208, 0.25), rgba(0, 145, 255, 0.25)),
-    url('../img/swimming-pool.jpg') center/cover no-repeat;
+    url('../img/bg.png') center/cover no-repeat;
 }
 .hero-overlay {
   position: absolute;
@@ -152,7 +152,7 @@ body.loaded { opacity: 1; }
   min-height: 260px;
   background:
     linear-gradient(135deg, rgba(0, 223, 208, 0.2), rgba(0, 145, 255, 0.2)),
-    url('../img/swimming-pool.jpg') center/cover no-repeat;
+    url('../img/about.jpg') center/cover no-repeat;
 }
 .panel-content { padding: clamp(20px, 4vw, 40px); }
 .tick-list { padding-left: 18px; }
