@@ -942,12 +942,6 @@ body.dark-mode .theme-toggle:hover {
   box-shadow: 0 12px 28px rgba(199, 125, 255, 0.45);
 }
 
-/* Footer and back-to-top use the same violet gradient */
-body.dark-mode .site-footer,
-body.dark-mode #back-to-top {
-  background: linear-gradient(135deg, var(--teal), var(--blue));
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
-}
 
 /* Optional: make social icons subtly glow violet */
 body.dark-mode .social-icon:hover {
