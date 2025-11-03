@@ -1,18 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("theme-toggle");
+  const toggle = document.querySelector(".theme-toggle");
   const body = document.body;
 
-  // Load saved theme
+  // Check user preference in localStorage or system preference
   const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  if (savedTheme === "dark" || (!savedTheme && systemDark)) {
     body.classList.add("dark-mode");
-    toggle.textContent = "☀️";
   }
 
+  // Update icon state
+  updateThemeIcon();
+
+  // Toggle theme when clicked
   toggle.addEventListener("click", () => {
     body.classList.toggle("dark-mode");
     const isDark = body.classList.contains("dark-mode");
-    toggle.textContent = isDark ? "☀️" : "🌙";
+
+    // Save user choice
     localStorage.setItem("theme", isDark ? "dark" : "light");
+    updateThemeIcon();
   });
+
+  // React to system changes live (optional but nice)
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    if (!localStorage.getItem("theme")) { // only if user hasn’t overridden manually
+      if (e.matches) {
+        body.classList.add("dark-mode");
+      } else {
+        body.classList.remove("dark-mode");
+      }
+      updateThemeIcon();
+    }
+  });
+
+  function updateThemeIcon() {
+    if (!toggle) return;
+    const isDark = body.classList.contains("dark-mode");
+    toggle.innerHTML = isDark ? "☀️" : "🌙";
+    toggle.title = isDark ? "Switch to Light Mode" : "Switch to Dark Mode";
+  }
 });
