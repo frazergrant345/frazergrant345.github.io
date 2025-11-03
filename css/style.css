@@ -617,6 +617,11 @@ body.loaded { opacity: 1; }
   margin-top: 16px; font-size: 0.95rem; padding: 10px 18px;
 }
 
+.site-footer a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 4px rgba(255,255,255,0.6);
+}
+
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
