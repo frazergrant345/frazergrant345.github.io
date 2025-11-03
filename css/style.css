@@ -839,6 +839,74 @@ body.dark-mode .copyright {
   color: rgba(255, 255, 255, 0.7);
 }
 
+
+body.dark-mode {
+  --ink: #eaf2ff;      /* primary text */
+  --muted: #b6c3d6;    /* secondary text */
+  --surface: #111b2a;  /* card/modal base */
+  --bg: #0b1422;       /* page background */
+}
+
+/* Feature cards */
+body.dark-mode .feature-card h3 {
+  color: #eaf2ff;
+}
+body.dark-mode .feature-card p {
+  color: #b6c3d6;
+}
+
+/* Generic cards (in case any use .card) */
+body.dark-mode .card h3,
+body.dark-mode .card h4,
+body.dark-mode .card h5 {
+  color: #eaf2ff;
+}
+body.dark-mode .card p,
+body.dark-mode .card li {
+  color: #b6c3d6;
+}
+
+/* Panel (“Why Travel with Nat?”) */
+body.dark-mode .panel {
+  background: #0f1929;
+}
+body.dark-mode .panel-content h2 {
+  color: #eaf2ff;
+}
+body.dark-mode .panel-content p,
+body.dark-mode .tick-list li {
+  color: #b6c3d6;
+}
+
+/* Modal content (extra contrast) */
+body.dark-mode .modal-panel {
+  background: #0f1929;
+  color: #eaf2ff;
+}
+body.dark-mode .modal-body h2,
+body.dark-mode .modal-body h3 {
+  color: #eaf2ff;
+}
+body.dark-mode .modal-body p,
+body.dark-mode .modal-body li {
+  color: #b6c3d6;
+}
+
+/* Links inside dark areas */
+body.dark-mode a {
+  color: #9cd2ff;
+}
+body.dark-mode a:hover {
+  color: #bfe3ff;
+}
+
+/* Optional: slight text-glow for tiny-on-dark labels */
+body.dark-mode .feature-card h3,
+body.dark-mode .panel-content h2 {
+  text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+}
+
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .panel { grid-template-columns: 1fr; }
