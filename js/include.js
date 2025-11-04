@@ -37,3 +37,18 @@ document.addEventListener('includesLoaded', () => {
     window.FontAwesome.dom.i2svg();
   }
 });
+
+// ---------- Development Popup ----------
+window.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("dev-popup");
+  const closeBtn = document.getElementById("dev-popup-close");
+
+  if (popup) {
+    // Show popup on every page load
+    setTimeout(() => popup.classList.add("show"), 600);
+
+    closeBtn.addEventListener("click", () => {
+      popup.classList.remove("show");
+    });
+  }
+});
