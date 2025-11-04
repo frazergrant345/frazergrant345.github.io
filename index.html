@@ -34,6 +34,7 @@
   <script src="js/stardust.js" defer></script>
   <script src="js/theme.js" defer></script>
   <script src="js/theme-toggle.js" defer></script>
+  <script src="js/news.js" defer></script>
 
 
 </head>
@@ -83,6 +84,28 @@
     <button class="btn btn-primary" type="button" data-open-modal="about">Learn More</button>
   </div>
 </section>
+
+<section id="news" class="section-gap news-section container">
+  <h2>Latest News & Offers</h2>
+  <div id="news-container" class="news-grid">
+    <!-- News items will be loaded here automatically -->
+  </div>
+</section>
+
+
+
+<!-- News Modal -->
+<div id="newsModal" class="news-modal-overlay">
+  <div class="news-modal">
+    <button id="newsModalClose" class="news-modal-close">×</button>
+    <img id="newsModalImage" class="news-modal-image" src="" alt="">
+    <h2 id="newsModalTitle"></h2>
+    <span id="newsModalDate" class="news-modal-date"></span>
+    <div id="newsModalContent" class="news-modal-content"></div>
+  </div>
+</div>
+
+
 
 
   </main>
