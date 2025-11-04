@@ -1590,3 +1590,20 @@ body.dark-mode .news-gallery img {
   margin-top: 1.5rem;
   margin-bottom: 2rem;
 }
+.news-modal-content {
+  animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.news-modal-image {
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+.news-modal-image:hover {
+  transform: scale(1.02);
+  filter: brightness(1.05);
+}
+

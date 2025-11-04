@@ -152,6 +152,25 @@ document.addEventListener("click", e => {
   }
 });
 
+// ---------- Banner Image Lightbox Integration ----------
+document.addEventListener("click", e => {
+  // If user clicks the main banner image inside a news modal
+  if (e.target.classList.contains("news-modal-image")) {
+    const banner = e.target.src;
+
+    // Try to collect gallery images (if present)
+    const gallery = Array.from(
+      e.target.closest(".news-modal").querySelectorAll(".gallery-thumb")
+    );
+
+    // Build gallery array including banner image first
+    currentGallery = [banner, ...gallery.map(img => img.src)];
+    currentIndex = 0; // start with the banner
+
+    showLightbox(currentGallery[currentIndex]);
+  }
+});
+
 function showLightbox(src) {
   const img = document.getElementById("lightbox-image");
   img.src = src;
