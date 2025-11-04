@@ -38,17 +38,25 @@ document.addEventListener('includesLoaded', () => {
   }
 });
 
-// ---------- Development Popup ----------
+// ---------- Development Popup (Once Per Day) ----------
 window.addEventListener("DOMContentLoaded", () => {
   const popup = document.getElementById("dev-popup");
   const closeBtn = document.getElementById("dev-popup-close");
 
-  if (popup) {
-    // Show popup on every page load
-    setTimeout(() => popup.classList.add("show"), 600);
+  if (!popup) return;
 
-    closeBtn.addEventListener("click", () => {
-      popup.classList.remove("show");
-    });
+  const lastShown = localStorage.getItem("devPopupLastShown");
+  const now = new Date();
+  const today = now.toISOString().split("T")[0]; // e.g., "2025-11-04"
+
+  // Only show if it hasn't been shown today
+  if (lastShown !== today) {
+    setTimeout(() => popup.classList.add("show"), 600);
   }
+
+  // Close button handler
+  closeBtn.addEventListener("click", () => {
+    popup.classList.remove("show");
+    localStorage.setItem("devPopupLastShown", today);
+  });
 });
