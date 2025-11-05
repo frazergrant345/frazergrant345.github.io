@@ -17,6 +17,7 @@ fetch("includes/news.json")
   .then(res => res.json())
   .then(news => {
     allNews = news; // store globally
+    window.__allNews = news;
     const container = document.getElementById("news-container");
     const today = new Date();
 
@@ -42,6 +43,7 @@ fetch("includes/news.json")
         </div>
       `;
     }).join("");
+      window.__renderNewsCards && window.__renderNewsCards();
 
     // Attach click handlers
     document.querySelectorAll(".news-card").forEach(card => {
@@ -228,3 +230,76 @@ document.addEventListener("keydown", e => {
     showLightbox(currentGallery[currentIndex]);
   }
 });
+
+
+/* === Slider Patch v1 === */
+(function(){
+  function initNewsSlider(){
+    const container = document.getElementById('news-container');
+    if(!container) return;
+    container.classList.add('news-slider-active');
+
+    // Arrows
+    const wrapper = container.closest('.news-slider-wrapper');
+    const prev = wrapper ? wrapper.querySelector('.news-nav.prev') : null;
+    const next = wrapper ? wrapper.querySelector('.news-nav.next') : null;
+
+    // Scroll amount ~= one card width + gap
+    const card = container.querySelector('.news-card');
+    const gap = 24;
+    const cardWidth = card ? card.getBoundingClientRect().width : 340;
+    const scrollAmount = Math.round(cardWidth + gap);
+
+    function updateNav(){
+      if(!prev || !next) return;
+      prev.style.opacity = container.scrollLeft > 0 ? '1' : '0.4';
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      next.style.opacity = container.scrollLeft >= maxScroll - 5 ? '0.4' : '1';
+    }
+
+    if(next) next.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      container.scrollBy({left: scrollAmount, behavior:'smooth'});
+      setTimeout(updateNav, 350);
+    });
+    if(prev) prev.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      container.scrollBy({left: -scrollAmount, behavior:'smooth'});
+      setTimeout(updateNav, 350);
+    });
+
+    container.addEventListener('scroll', updateNav);
+    window.addEventListener('resize', updateNav);
+    setTimeout(updateNav, 500);
+
+    // Click handling: open modal for any card or its "Read More"
+    container.querySelectorAll('.news-card').forEach((cardEl)=>{
+      cardEl.addEventListener('click', (e)=>{
+        if(e.target.closest('.news-nav')) return; // ignore arrow clicks
+        const idx = cardEl.dataset.index || cardEl.getAttribute('data-index');
+        if(typeof idx !== 'undefined' && window.__allNews && window.__allNews[+idx]){
+          (window.openNewsModal||function(){})(window.__allNews[+idx]);
+        }
+      });
+      const readMore = cardEl.querySelector('.read-more');
+      if(readMore){
+        readMore.addEventListener('click', (e)=>{
+          e.preventDefault();
+          e.stopPropagation();
+          const idx = cardEl.dataset.index || cardEl.getAttribute('data-index');
+          if(typeof idx !== 'undefined' && window.__allNews && window.__allNews[+idx]){
+            (window.openNewsModal||function(){})(window.__allNews[+idx]);
+          }
+        });
+      }
+    });
+  }
+
+  // Hook into existing loader by setting global after render helper
+  const _origRender = window.__renderNewsCards;
+  window.__renderNewsCards = function(){ try{ if(typeof _origRender==='function') _origRender(); }catch(e){}; initNewsSlider(); };
+
+  // If the page already rendered before this patch loads, try anyway
+  document.addEventListener('DOMContentLoaded', initNewsSlider);
+  setTimeout(initNewsSlider, 1200);
+})();

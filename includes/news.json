@@ -22,5 +22,29 @@
     "date": "2025-09-14",
     "icon": "🏝️",
     "content": "Our featured getaway this month is the Maldives — overwater villas, crystal lagoons, and exclusive extras when you book with Nat."
+  },
+  {
+    "title": "New Cruise Partners Announced!",
+    "date": "2025-11-03",
+    "icon": "🛳️",
+    "content": "**Exciting news!** We’ve joined forces with new luxury cruise partners.\n\nExpect *exclusive* early-access deals, cabin upgrades, and more!\n\n\n\n\n\n\n\n test",
+    "image": "img/bg.png",
+    "gallery": [
+      "img/about.jpg",
+      "img/bg.png"
+    ]
+  },
+  {
+    "title": "Winter Sun Offers Now Live",
+    "date": "2025-10-25",
+    "icon": "☀️",
+    "image": "img/about.jpg",
+    "content": "Escape the chill! Discover **Caribbean**, **Canary Islands**, and **Maldives** winter-sun escapes."
+  },
+  {
+    "title": "Luxury Escape Spotlight: Maldives",
+    "date": "2025-09-14",
+    "icon": "🏝️",
+    "content": "Our featured getaway this month is the Maldives — overwater villas, crystal lagoons, and exclusive extras when you book with Nat."
   }
 ]
